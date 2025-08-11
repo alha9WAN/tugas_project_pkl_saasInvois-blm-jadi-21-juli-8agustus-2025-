@@ -1,0 +1,93 @@
+
+
+
+@extends('adminlte::page')
+
+@section('title', 'Paket Management')
+
+@section('content_header')
+
+
+
+@section('content')
+   <div class="container mt-5">
+       <div class="card shadow">
+           <div class="card-header bg-primary text-white">
+               <h5 class="mb-0"><i class="fas fa-box me-2"></i>+ Update  Paket  </h5>
+           </div>
+           <div class="card-body">
+               <form action="/admin/paket/{{ $data_paket->id }}" method="POST">
+                @csrf
+                @method('PUT')
+
+
+                   <div class="mb-3">
+                       <label for="name" class="form-label"  >Nama Paket<span >*</span></label>
+                       <input type="text" class="form-control"  name="nama" value="{{ $data_paket->nama }}" placeholder="Contoh: Paket Besic" required >
+                   </div>
+
+
+
+
+                   <div class="mb-3">
+                       <label for="email" class="form-label">Harga</label>
+                       <input type="number" class="form-control" name="harga"  value="{{ $data_paket->harga }}"placeholder="contoh 100.000" required>
+                   </div>
+
+
+                    <div class="mb-3">
+                       <label for="" class="form-label">Batas Invoice</label>
+                       <input type="number" class="form-control" name="batas_invoice" value="{{ $data_paket->batas_invoice }}" placeholder=" contoh 5" required>
+                   </div>
+
+
+
+
+
+
+
+
+
+
+
+                   <!-- Tombol Aksi -->
+                   <div class="d-flex justify-content-between mt-4">
+                       <a href="/admin/paket" class="btn btn-outline-secondary">
+                           <i class="fas fa-arrow-left me-2"></i> Kembali
+                       </a>
+                       <button type="submit" class="btn btn-primary">
+                           <i class="fas fa-save me-2"></i> Update Data
+                       </button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+
+
+@stop
+
+
+
+@section('css')
+
+
+@stop
+
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('swal'))
+<script>
+    Swal.fire({
+        icon: '{{ session('swal.type') }}',
+        title: '{{ session('swal.title') }}',
+        text: '{{ session('swal.text') }}',
+    });
+</script>
+@endif
+@stop
+
+
+
